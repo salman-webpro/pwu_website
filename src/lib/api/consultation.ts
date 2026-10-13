@@ -1,4 +1,6 @@
-import type { ApiResult, ConsultationBooking, ConsultationSlot } from "@/types";
+import type { ConsultationInput } from "@/lib/validation/schemas";
+import type { ApiResult, ConsultationSlot } from "@/types";
+import { submitConsultation } from "./actions";
 import { apiGet, apiPost, isMock } from "./client";
 import { mocks } from "./mocks";
 
@@ -8,8 +10,8 @@ export function getConsultationSlots(): Promise<ApiResult<ConsultationSlot[]>> {
   return apiGet("/consultations/slots?days=3");
 }
 
-/** "Free consultation" modal, final step. */
-export function bookConsultation(booking: ConsultationBooking): Promise<ApiResult<{ id: string; start: string }>> {
-  if (isMock) return mocks.bookConsultation(booking);
+/** "Free consultation" modal, final step. Emails the booking via Resend unless a backend is configured. */
+export function bookConsultation(booking: ConsultationInput): Promise<ApiResult<{ id: string; start: string }>> {
+  if (isMock) return submitConsultation(booking);
   return apiPost("/consultations", booking);
 }

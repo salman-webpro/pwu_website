@@ -4,6 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useEffect, useState } from "react";
 import { FormProvider, useForm, useWatch } from "react-hook-form";
 import { Button } from "@/components/ui/Button";
+import { Honeypot } from "@/components/ui/Honeypot";
 import { consultationModal as copy, modalUi } from "@/content/modals";
 import { bookConsultation, getConsultationSlots } from "@/lib/api/consultation";
 import { consultationSchema, type ConsultationInput } from "@/lib/validation/schemas";
@@ -119,7 +120,8 @@ export function ConsultationModal({
         </ModalSuccess>
       ) : (
         <FormProvider {...form}>
-          <form id={FORM_ID} onSubmit={onSubmit} noValidate>
+          <form id={FORM_ID} onSubmit={onSubmit} noValidate className="relative">
+            <Honeypot field={form.register("company_website")} />
             {step === 1 && <TopicStep />}
             {step === 2 && <DetailsStep />}
             {step === 3 && <TimeStep slots={slots} failed={slotsFailed} day={day} onDayChange={setPickedDay} />}

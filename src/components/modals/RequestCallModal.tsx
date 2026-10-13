@@ -4,6 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import { Button } from "@/components/ui/Button";
+import { Honeypot } from "@/components/ui/Honeypot";
 import { callWindows, modalUi, requestCallModal as copy } from "@/content/modals";
 import { requestCallback } from "@/lib/api/leads";
 import { callbackSchema, type CallbackInput } from "@/lib/validation/schemas";
@@ -89,7 +90,8 @@ export function RequestCallModal({ open, onOpenChange }: { open: boolean; onOpen
         </ModalSuccess>
       ) : (
         <FormProvider {...form}>
-          <form id={FORM_ID} onSubmit={onSubmit} noValidate>
+          <form id={FORM_ID} onSubmit={onSubmit} noValidate className="relative">
+            <Honeypot field={form.register("company_website")} />
             {step === "details" ? <CallDetailsStep /> : <CallTimeStep failed={failed} />}
           </form>
         </FormProvider>

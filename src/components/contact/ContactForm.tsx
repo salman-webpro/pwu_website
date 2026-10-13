@@ -5,6 +5,7 @@ import { useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Alert } from "@/components/ui/Alert";
 import { Button } from "@/components/ui/Button";
+import { Honeypot } from "@/components/ui/Honeypot";
 import { Input } from "@/components/ui/Input";
 import { SuccessCheck } from "@/components/ui/SuccessCheck";
 import { Textarea } from "@/components/ui/Textarea";
@@ -47,7 +48,8 @@ export function ContactForm({ copy, className }: { copy: typeof contactForm; cla
       ) : (
         <>
           <h2 className="text-h2 text-ink">{copy.title}</h2>
-          <form onSubmit={onSubmit} noValidate className="mt-6 flex flex-col gap-4">
+          <form onSubmit={onSubmit} noValidate className="relative mt-6 flex flex-col gap-4">
+            <Honeypot field={register("company_website")} />
             <Input
               label={copy.fields.name.label}
               autoComplete={copy.fields.name.autoComplete}

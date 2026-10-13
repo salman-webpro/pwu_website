@@ -17,13 +17,22 @@ export function isValidUsPhone(value: string) {
   return digits.length === 10 || (digits.length === 11 && digits.startsWith("1"));
 }
 
+/**
+ * Hidden "honeypot" field present on every form. People never see it; bots that fill
+ * every input do — submissions with it filled are silently dropped on the server.
+ */
+export const HONEYPOT = "company_website";
+const honeypot = { company_website: z.string().optional() };
+
 export const contactSchema = z.object({
+  ...honeypot,
   name: z.string().trim().min(2),
   email: z.string().trim().email(),
   message: z.string().trim().min(10),
 });
 
 export const callbackSchema = z.object({
+  ...honeypot,
   name: z.string().trim().min(1),
   phone: z.string().refine(isValidUsPhone),
   topic: z.enum(["new-quote", "reorder", "order-status", "artwork", "other"]),
@@ -31,6 +40,7 @@ export const callbackSchema = z.object({
 });
 
 export const consultationSchema = z.object({
+  ...honeypot,
   topic: z.enum(["repeat-ordering", "quote", "team-account", "other"]),
   name: z.string().trim().min(1),
   email: z.string().trim().email(),
