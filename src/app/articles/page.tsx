@@ -7,11 +7,9 @@ import { Card } from "@/components/ui/Card";
 import { articlesHero, articlesMeta, articlesPage } from "@/content/articles";
 import { ctaPanel } from "@/content/shared";
 import { getArticles } from "@/lib/api/articles";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: articlesMeta.title,
-  description: articlesMeta.description,
-};
+export const metadata: Metadata = pageMetadata(articlesMeta, "/articles");
 
 // TODO(design): no Articles design exists yet — on-brand placeholder built from shared sections.
 export default async function ArticlesPage() {

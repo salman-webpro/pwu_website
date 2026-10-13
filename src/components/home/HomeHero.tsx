@@ -16,7 +16,7 @@ export function HomeHero({ hero, mockup }: { hero: typeof homeHero; mockup: type
 
       <Container>
         <div className="relative">
-          <div className="grid items-center gap-12 rounded-xl bg-gradient-hero px-6 py-10 sm:rounded-hero sm:px-12 sm:py-16 lg:grid-cols-[minmax(0,1fr)_minmax(0,577px)] lg:gap-10 xl:px-[72px] xl:py-[88px]">
+          <div className="grid items-center gap-12 rounded-xl bg-gradient-hero px-6 py-10 sm:rounded-hero sm:px-12 sm:py-16 lg:grid-cols-2 lg:gap-10 xl:grid-cols-[minmax(0,1fr)_577px] xl:px-[72px] xl:py-[88px]">
             <div>
               <h1 className="text-display-xl text-ink">
                 {hero.titleLines.map((line) =>
@@ -31,7 +31,7 @@ export function HomeHero({ hero, mockup }: { hero: typeof homeHero; mockup: type
                   ),
                 )}
               </h1>
-              <p className="mt-8 max-w-[520px] text-lead text-body">{hero.lead}</p>
+              <p className="mt-8 max-w-[520px] text-lead text-copy">{hero.lead}</p>
               <div className="mt-10 flex flex-wrap gap-3.5">
                 <ModalButton modal={hero.primaryCta.modal} preset={hero.primaryCta.preset}>
                   {hero.primaryCta.label}

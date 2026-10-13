@@ -10,11 +10,9 @@ import { SectionHeading } from "@/components/sections/SectionHeading";
 import { SoftCtaPanel } from "@/components/sections/SoftCtaPanel";
 import { businessInLaHero, businessInLaMeta, laChips, laFeatures, laSoftCta } from "@/content/business-in-la";
 import { ctaPanel } from "@/content/shared";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: businessInLaMeta.title,
-  description: businessInLaMeta.description,
-};
+export const metadata: Metadata = pageMetadata(businessInLaMeta, "/business-in-la");
 
 export default function BusinessInLaPage() {
   return (

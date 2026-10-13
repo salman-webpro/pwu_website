@@ -4,6 +4,7 @@ import { Container } from "@/components/layout/Container";
 import { PageHero } from "@/components/sections/PageHero";
 import { faqs } from "@/content/faqs";
 import { getInfoPage, infoPages } from "@/content/info-pages";
+import { pageMetadata } from "@/lib/seo";
 
 // Placeholder pages behind the footer links: /about, /faqs, /shipping, /returns, /accessibility, /privacy, /terms.
 
@@ -13,7 +14,7 @@ export function generateStaticParams() {
 
 export async function generateMetadata({ params }: PageProps<"/[slug]">): Promise<Metadata> {
   const page = getInfoPage((await params).slug);
-  return page ? { title: page.eyebrow, description: page.description } : {};
+  return page ? pageMetadata({ title: page.eyebrow, description: page.description }, `/${page.slug}`) : {};
 }
 
 export default async function InfoPage({ params }: PageProps<"/[slug]">) {
@@ -27,7 +28,7 @@ export default async function InfoPage({ params }: PageProps<"/[slug]">) {
       <Container className="mt-8 mb-6">
         <div className="rounded-xl border border-border bg-surface p-6 sm:p-12">
           {page.body.length > 0 && (
-            <div className="flex max-w-[760px] flex-col gap-5 text-body text-body">
+            <div className="flex max-w-[760px] flex-col gap-5 text-body text-copy">
               {page.body.map((paragraph) => (
                 <p key={paragraph}>{paragraph}</p>
               ))}

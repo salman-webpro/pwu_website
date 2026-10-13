@@ -1,6 +1,6 @@
 "use client";
 
-import { useModal, type ConsultationPreset } from "@/components/modals/ModalProvider";
+import { preloadModal, useModal, type ConsultationPreset } from "@/components/modals/ModalProvider";
 import type { ModalId } from "@/types";
 import { Button, type ButtonSize, type ButtonVariant } from "./Button";
 
@@ -33,6 +33,8 @@ export function ModalButton({
       size={size}
       className={className}
       aria-haspopup="dialog"
+      onPointerEnter={() => preloadModal(modal)}
+      onFocus={() => preloadModal(modal)}
       onClick={() => {
         onClick?.();
         openModal(modal, preset);

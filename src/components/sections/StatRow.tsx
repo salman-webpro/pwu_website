@@ -5,7 +5,7 @@ import type { IconStat } from "@/types";
 /** Three icon + big number + label columns, no cards. */
 export function StatRow({ items, className }: { items: IconStat[]; className?: string }) {
   return (
-    <ul className={cn("grid gap-8 sm:grid-cols-3", className)}>
+    <ul className={cn("grid gap-8 md:grid-cols-3", className)}>
       {items.map((item) => (
         <li key={item.label}>
           <IconSquare icon={item.icon} tone="ink" size={34} />

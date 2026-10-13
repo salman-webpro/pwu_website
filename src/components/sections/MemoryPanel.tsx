@@ -31,7 +31,7 @@ export function MemoryPanel({
             <p aria-hidden className="text-big-word text-pink">
               {item.word}
             </p>
-            <h3 className="mt-4 text-body font-bold text-body lg:mt-8">{item.title}</h3>
+            <h3 className="mt-4 text-body font-bold text-copy lg:mt-8">{item.title}</h3>
             <p className="mt-0.5 text-body text-muted">{item.body}</p>
           </li>
         ))}

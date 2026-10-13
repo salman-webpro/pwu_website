@@ -16,8 +16,9 @@
   --color-ink-deep: #14122e;
   --color-navy: #14142b;
   --color-navy-card: #222238;
-  --color-body: #4d4c65;
-  --color-muted: #6b6b80;
+  /* Body/lead paragraph color. Named "copy" (not "body") so `text-copy` can't clash with the `text-body` font size. */
+  --color-copy: #4d4c65;
+  --color-muted: #65657a; /* design #6B6B80, darkened slightly to pass AA on the hero gradient */
   --color-muted-on-dark: #b9b8d4;
   --color-bg: #f7f7fa;
   --color-surface: #ffffff;
@@ -26,7 +27,7 @@
   --color-divider: #eeeef3; /* header bottom border */
   --color-footer: #26262b;
   --color-sand: #ebe9e6; /* "Without a system" panel */
-  --color-faint: #a3a2b0; /* "Every order starts from zero." */
+  --color-faint: #82818e; /* "Every order starts from zero." — design #A3A2B0, darkened to pass AA (3:1, large text) */
 
   /* ---------- Brand accents ---------- */
   --color-coral: #fc5440;
@@ -35,8 +36,10 @@
   --color-stat: #ff5a6e;
   --color-orange: #ff9a4d;
   --color-pink-tint: #fde3ec;
+  --color-pink-strong: #c0175f; /* pink text on pink-tint fills (AA) */
   --color-error: #e11d48;
   --color-error-tint: #fff1f3;
+  --color-error-strong: #be123c; /* error text on error-tint fills (AA) */
   --color-success: #22a06b;
   --color-success-tint: #e3f5ed;
 
@@ -181,5 +184,13 @@
     background-color: var(--color-bg);
     color: var(--color-ink);
     font-family: var(--font-sans);
+  }
+
+  /* Tailwind v4 no longer gives buttons a pointer cursor; restore it site-wide.
+     Disabled buttons keep the cursor-not-allowed set on the component. */
+  button:not(:disabled):not([aria-disabled="true"]),
+  [role="button"]:not([aria-disabled="true"]),
+  select:not(:disabled) {
+    cursor: pointer;
   }
 }

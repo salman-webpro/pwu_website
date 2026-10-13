@@ -22,11 +22,9 @@ import {
 } from "@/content/home";
 import { products } from "@/content/products";
 import { ctaPanel } from "@/content/shared";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: { absolute: homeMeta.title },
-  description: homeMeta.description,
-};
+export const metadata: Metadata = pageMetadata(homeMeta, "/", { absoluteTitle: true });
 
 export default function HomePage() {
   return (

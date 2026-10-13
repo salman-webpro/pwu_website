@@ -6,11 +6,9 @@ import { ContactOptions } from "@/components/contact/ContactOptions";
 import { Container } from "@/components/layout/Container";
 import { PageHero } from "@/components/sections/PageHero";
 import { contactForm, contactHero, contactMeta, contactOptions } from "@/content/contact";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: contactMeta.title,
-  description: contactMeta.description,
-};
+export const metadata: Metadata = pageMetadata(contactMeta, "/contact");
 
 export default function ContactPage() {
   return (

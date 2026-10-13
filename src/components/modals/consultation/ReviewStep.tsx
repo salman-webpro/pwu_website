@@ -27,7 +27,7 @@ export function ReviewStep({ failed }: { failed: boolean }) {
   return (
     <>
       <StepSubtitle className="font-semibold">{copy.review.subtitle}</StepSubtitle>
-      <ul className="mt-4 flex flex-col gap-3.5 rounded-[16px] border border-border bg-surface p-5 text-body font-semibold text-body">
+      <ul className="mt-4 flex flex-col gap-3.5 rounded-[16px] border border-border bg-surface p-5 text-body font-semibold text-copy">
         <li className="text-ink">{consultationTopics.find((t) => t.value === v.topic)?.label}</li>
         {lines.map((line) => (
           <li key={line} className="break-words">

@@ -10,11 +10,9 @@ import { StepsGrid } from "@/components/sections/StepsGrid";
 import { faqs } from "@/content/faqs";
 import { howItWorksFaq, howItWorksHero, howItWorksMeta, howItWorksSteps, memoryPanel } from "@/content/how-it-works";
 import { ctaPanel } from "@/content/shared";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: howItWorksMeta.title,
-  description: howItWorksMeta.description,
-};
+export const metadata: Metadata = pageMetadata(howItWorksMeta, "/how-it-works");
 
 export default function HowItWorksPage() {
   return (

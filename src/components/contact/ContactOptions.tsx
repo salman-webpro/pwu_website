@@ -23,7 +23,7 @@ function OptionCard({ title, body, cta }: { title: string; body: string; cta: Mo
 export function ContactOptions({ content, className }: { content: typeof contactOptions; className?: string }) {
   const { consultation, call, direct } = content;
   return (
-    <ul className={cn("grid gap-6 md:grid-cols-3 lg:min-h-[219px]", className)}>
+    <ul className={cn("grid gap-6 sm:grid-cols-2 lg:min-h-[219px] lg:grid-cols-3", className)}>
       <OptionCard {...consultation} />
       <OptionCard {...call} />
       <Card as="li">
@@ -32,7 +32,7 @@ export function ContactOptions({ content, className }: { content: typeof contact
           <a href={direct.phone.href} className={linkClass}>
             {direct.phone.display}
           </a>
-          <a href={`mailto:${direct.email}`} className={linkClass}>
+          <a href={`mailto:${direct.email}`} className={`break-all ${linkClass}`}>
             {direct.email}
           </a>
         </p>

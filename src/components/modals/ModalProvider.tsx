@@ -1,11 +1,23 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import { useRouter } from "next/navigation";
 import { createContext, Suspense, useCallback, useContext, useMemo, useState, type ReactNode } from "react";
 import type { ConsultationTopic, ModalId } from "@/types";
-import { ConsultationModal } from "./ConsultationModal";
 import { ModalDeepLink } from "./ModalDeepLink";
-import { RequestCallModal } from "./RequestCallModal";
+
+// Loaded only when first needed, so form/validation code isn't in every page's bundle.
+const loaders = {
+  call: () => import("./RequestCallModal").then((m) => m.RequestCallModal),
+  consultation: () => import("./ConsultationModal").then((m) => m.ConsultationModal),
+};
+const RequestCallModal = dynamic(loaders.call);
+const ConsultationModal = dynamic(loaders.consultation);
+
+/** Start downloading a modal's code early (e.g. on button hover) so it opens instantly. */
+export function preloadModal(id: ModalId) {
+  void loaders[id]();
+}
 
 export type ConsultationPreset = { topic?: ConsultationTopic };
 

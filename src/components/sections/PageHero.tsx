@@ -47,7 +47,7 @@ export function PageHero({
               )}
               {titleEnd}
             </h1>
-            <p className="mt-8 max-w-[680px] text-lead text-body lg:mt-10">{lead}</p>
+            <p className="mt-8 max-w-[680px] text-lead text-copy lg:mt-10">{lead}</p>
             {cta && (
               <ModalButton modal={cta.modal} preset={cta.preset} className="mt-6">
                 {cta.label}

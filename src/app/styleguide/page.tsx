@@ -22,7 +22,7 @@ import { ChoiceDemos, ModalDemos, ProgressDemos } from "./InteractiveDemos";
 const colorGroups: { title: string; tokens: string[] }[] = [
   {
     title: "Core",
-    tokens: ["ink", "ink-deep", "navy", "navy-card", "body", "muted", "muted-on-dark", "bg", "surface", "field", "border", "divider", "footer"],
+    tokens: ["ink", "ink-deep", "navy", "navy-card", "copy", "muted", "muted-on-dark", "bg", "surface", "field", "border", "divider", "footer"],
   },
   {
     title: "Brand accents",
@@ -45,7 +45,7 @@ const typeScale = [
   { name: "stat-dark", className: "text-stat-dark text-stat" },
   { name: "stat-light", className: "text-stat-light" },
   { name: "h3", className: "text-h3" },
-  { name: "lead", className: "text-lead text-body" },
+  { name: "lead", className: "text-lead text-copy" },
   { name: "body", className: "text-body text-muted" },
   { name: "small", className: "text-small text-muted" },
   { name: "eyebrow", className: "text-eyebrow text-pink" },

@@ -36,9 +36,9 @@ export default async function ArticlePage({ params }: PageProps<"/articles/[slug
       <article className="mt-6 rounded-xl border border-border bg-surface p-6 sm:p-12">
         <Eyebrow>{article.category}</Eyebrow>
         <h1 className="mt-4 text-h2 text-ink lg:text-5xl lg:leading-tight">{article.title}</h1>
-        <p className="mt-6 text-lead text-body">{article.excerpt}</p>
+        <p className="mt-6 text-lead text-copy">{article.excerpt}</p>
         {article.body && (
-          <div className="mt-8 flex flex-col gap-5 text-body text-body">
+          <div className="mt-8 flex flex-col gap-5 text-body text-copy">
             {article.body.split(/\n{2,}/).map((paragraph, i) => (
               <p key={i}>{paragraph}</p>
             ))}

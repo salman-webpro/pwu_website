@@ -6,7 +6,7 @@ export function Alert({ children, className }: { children: ReactNode; className?
   return (
     <p
       role="alert"
-      className={cn("rounded-md border border-error/30 bg-error-tint px-4 py-3 text-small text-error", className)}
+      className={cn("rounded-md border border-error/30 bg-error-tint px-4 py-3 text-small text-error-strong", className)}
     >
       {children}
     </p>
