@@ -98,7 +98,7 @@ export const consultationModal = {
   success: {
     title: "You are booked",
     // "{date} · {time} PT"
-    with: "with a print specialist. A calendar invite is on its way to your email.",
+    with: "with a print specialist.",
     prep: "Have a recent order or your print files handy. Nothing else needed.",
   },
 };
