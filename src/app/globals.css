@@ -1,26 +1,185 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+/*
+ * Design tokens — see docs/01-design-system.md.
+ * Every color, radius, shadow and type style used by components lives here.
+ * Tailwind turns each token into utilities, e.g. --color-ink → text-ink / bg-ink,
+ * --radius-lg → rounded-lg, --text-h2 → text-h2.
+ */
+@theme {
+  /* ---------- Fonts (variables come from next/font in layout.tsx) ---------- */
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-script: var(--font-script-accent), cursive;
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+  /* ---------- Core colors ---------- */
+  --color-ink: #151433;
+  --color-ink-deep: #14122e;
+  --color-navy: #14142b;
+  --color-navy-card: #222238;
+  --color-body: #4d4c65;
+  --color-muted: #6b6b80;
+  --color-muted-on-dark: #b9b8d4;
+  --color-bg: #f7f7fa;
+  --color-surface: #ffffff;
+  --color-field: #f6f5fa;
+  --color-border: #e6e4ef;
+  --color-divider: #eeeef3; /* header bottom border */
+  --color-footer: #26262b;
+  --color-sand: #ebe9e6; /* "Without a system" panel */
+  --color-faint: #a3a2b0; /* "Every order starts from zero." */
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  /* ---------- Brand accents ---------- */
+  --color-coral: #fc5440;
+  --color-pink: #e11d74;
+  --color-magenta: #a61caa;
+  --color-stat: #ff5a6e;
+  --color-orange: #ff9a4d;
+  --color-pink-tint: #fde3ec;
+  --color-error: #e11d48;
+  --color-error-tint: #fff1f3;
+  --color-success: #22a06b;
+  --color-success-tint: #e3f5ed;
+
+  /* ---------- Decorative ---------- */
+  --color-squiggle: #ec6f9a;
+  --color-tile: #f6a88a; /* peach tile inside product category cards */
+  --color-blob-blue: #3ba0d8;
+  --color-blob-amber: #c9921f;
+  --color-blob-pink: #d61f5e;
+  --color-lavender: #d9ccff; /* glow behind the dashboard mockup + product grid */
+  --color-purple-glow: #5b2a9e; /* bottom-left glow in the dark stats band */
+
+  /* ---------- Radii ---------- */
+  --radius-hero: 40px;
+  --radius-xl: 28px;
+  --radius-modal: 24px;
+  --radius-lg: 20px;
+  --radius-md: 14px;
+  --radius-tile: 10px;
+  --radius-pill: 9999px;
+
+  /* ---------- Shadows ---------- */
+  --shadow-card: 0 1px 2px rgba(21, 20, 51, 0.04);
+  --shadow-elevated: 0 20px 50px -20px rgba(21, 20, 51, 0.18);
+  --shadow-tile: 0 8px 18px -6px rgba(0, 0, 0, 0.25);
+
+  /* ---------- Type scale ----------
+   * Sizes use clamp() so they shrink smoothly from 1280px down to 375px
+   * (mobile sizes from the design-system doc). Use as text-display-xl, text-h2, ...
+   */
+  --text-display-xl: clamp(3rem, 2.07rem + 3.98vw, 5.25rem); /* 48 → 84 */
+  --text-display-xl--line-height: 1;
+  --text-display-xl--letter-spacing: -0.035em;
+  --text-display-xl--font-weight: 700;
+
+  --text-display-l: clamp(2.75rem, 2.03rem + 3.09vw, 4.5rem); /* 44 → 72 */
+  --text-display-l--line-height: 1.05;
+  --text-display-l--letter-spacing: -0.03em;
+  --text-display-l--font-weight: 700;
+
+  --text-h2: clamp(1.875rem, 1.62rem + 1.1vw, 2.5rem); /* 30 → 40 */
+  --text-h2--line-height: 1.15;
+  --text-h2--letter-spacing: -0.02em;
+  --text-h2--font-weight: 700;
+
+  --text-big-word: clamp(2.5rem, 2.09rem + 1.77vw, 3.5rem); /* 40 → 56 */
+  --text-big-word--line-height: 1.1;
+  --text-big-word--letter-spacing: -0.01em;
+  --text-big-word--font-weight: 700;
+
+  --text-stat-dark: clamp(2.5rem, 2.09rem + 1.77vw, 3.5rem); /* 40 → 56 */
+  --text-stat-dark--line-height: 1;
+  --text-stat-dark--font-weight: 700;
+
+  --text-stat-light: clamp(2.5rem, 2.29rem + 0.88vw, 3rem); /* 40 → 48 */
+  --text-stat-light--line-height: 1;
+  --text-stat-light--letter-spacing: -0.01em;
+  --text-stat-light--font-weight: 500;
+
+  --text-h3: 1.375rem; /* 22 */
+  --text-h3--line-height: 1.3;
+  --text-h3--letter-spacing: -0.01em;
+  --text-h3--font-weight: 700;
+
+  --text-lead: clamp(1.125rem, 1.02rem + 0.44vw, 1.375rem); /* 18 → 22 */
+  --text-lead--line-height: 1.5;
+
+  --text-body: 1rem; /* 16 */
+  --text-body--line-height: 1.5;
+
+  --text-small: 0.875rem; /* 14 */
+  --text-small--line-height: 1.4;
+
+  --text-eyebrow: 0.75rem; /* 12 */
+  --text-eyebrow--line-height: 1;
+  --text-eyebrow--font-weight: 600;
+
+  --text-overline: 0.75rem; /* 12, use with `uppercase` */
+  --text-overline--line-height: 1;
+  --text-overline--letter-spacing: 0.08em;
+  --text-overline--font-weight: 500;
+
+  --text-nav: 0.9375rem; /* 15 */
+  --text-nav--line-height: 1;
+
+  --text-button: 1rem; /* 16 */
+  --text-button--line-height: 1;
+  --text-button--font-weight: 600;
+
+  /* ---------- Animations (use with motion-safe:) ---------- */
+  --animate-fade-in: fade-in 150ms ease-out;
+  --animate-dialog-in: dialog-in 180ms ease-out;
+  --animate-sheet-in: sheet-in 220ms ease-out;
+  --animate-step-in: step-in 150ms ease-out;
+  --animate-float: float 4s ease-in-out infinite;
+
+  @keyframes fade-in {
+    from { opacity: 0; }
+  }
+  @keyframes dialog-in {
+    /* Tailwind's translate-* uses the separate `translate` property, so this stacks with centering. */
+    from { opacity: 0; transform: translateY(8px) scale(0.98); }
+  }
+  @keyframes sheet-in {
+    from { transform: translateY(100%); }
+  }
+  @keyframes step-in {
+    from { opacity: 0; transform: translateX(8px); }
+  }
+  @keyframes float {
+    50% { transform: translateY(-6px); }
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* Gradients — used through the bg-gradient-* utilities below. */
+:root {
+  --gradient-brand: linear-gradient(90deg, #fc5440 0%, #e11d74 55%, #a61caa 100%);
+  --gradient-hero: linear-gradient(135deg, #fee2ea 0%, #f9e4f2 50%, #efe6fe 100%);
+  --gradient-ink-panel: linear-gradient(135deg, #14122e 0%, #14122e 45%, #6b174c 100%);
+}
+
+@utility bg-gradient-brand {
+  background-image: var(--gradient-brand);
+}
+@utility bg-gradient-hero {
+  background-image: var(--gradient-hero);
+}
+@utility bg-gradient-ink-panel {
+  background-image: var(--gradient-ink-panel);
+}
+
+/* Gradient-filled text, e.g. "Reorder it forever." */
+@utility text-gradient-brand {
+  background-image: var(--gradient-brand);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+@layer base {
+  body {
+    background-color: var(--color-bg);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+  }
 }
