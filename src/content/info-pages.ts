@@ -1,4 +1,5 @@
 import type { InfoPage } from "@/types";
+import { privacyPage, termsPage } from "./legal";
 
 // Placeholder pages behind the footer links, rendered by src/app/(info)/[slug]/page.tsx.
 // TODO(content): replace "Content coming soon." with real copy.
@@ -10,8 +11,8 @@ export const infoPages: InfoPage[] = [
   { slug: "shipping", eyebrow: "Shipping info", title: "Shipping information", description: "How Print Wave USA ships your orders.", body: comingSoon },
   { slug: "returns", eyebrow: "Returns", title: "Returns", description: "Print Wave USA returns policy.", body: comingSoon },
   { slug: "accessibility", eyebrow: "Accessibility", title: "Accessibility", description: "Our commitment to an accessible website.", body: comingSoon },
-  { slug: "privacy", eyebrow: "Privacy Policy", title: "Privacy Policy", description: "How Print Wave USA handles your data.", body: comingSoon },
-  { slug: "terms", eyebrow: "Terms of Service", title: "Terms of Service", description: "Terms for using Print Wave USA.", body: comingSoon },
+  privacyPage,
+  termsPage,
 ];
 
 export function getInfoPage(slug: string): InfoPage | undefined {

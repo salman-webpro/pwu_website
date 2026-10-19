@@ -138,6 +138,19 @@ export interface InfoPage {
   body: string[];
   /** Show the shared FAQs under the body (used by /faqs). */
   showFaqs?: boolean;
+  /** Shown above the body, e.g. "Effective Date: January 1, 2025" (legal pages). */
+  effectiveDate?: string;
+  /** Headed sections under the body (used by /privacy and /terms). */
+  sections?: LegalSection[];
+}
+
+export interface LegalSection {
+  heading: string;
+  /** Paragraphs before the list. */
+  intro?: string[];
+  bullets?: string[];
+  /** Paragraphs after the list. */
+  outro?: string[];
 }
 
 // ---------- Leads & bookings (API payloads) ----------

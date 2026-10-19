@@ -54,6 +54,6 @@ export const footer = {
   copyright: { legalName: site.legalName, suffix: "All rights reserved." },
   legalLinks: [
     { label: "Privacy Policy", href: "/privacy" },
-    { label: "Terms of Service", href: "/terms" },
+    { label: "Terms of Usage", href: "/terms" },
   ] satisfies NavLink[],
 };

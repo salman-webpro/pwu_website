@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Container } from "@/components/layout/Container";
+import { LegalSections } from "@/components/sections/LegalSections";
 import { PageHero } from "@/components/sections/PageHero";
 import { faqs } from "@/content/faqs";
 import { getInfoPage, infoPages } from "@/content/info-pages";
@@ -27,11 +28,17 @@ export default async function InfoPage({ params }: PageProps<"/[slug]">) {
 
       <Container className="mt-8 mb-6">
         <div className="rounded-xl border border-border bg-surface p-6 sm:p-12">
+          {page.effectiveDate && <p className="mb-6 text-sm font-semibold text-muted">{page.effectiveDate}</p>}
           {page.body.length > 0 && (
             <div className="flex max-w-[760px] flex-col gap-5 text-body text-copy">
               {page.body.map((paragraph) => (
                 <p key={paragraph}>{paragraph}</p>
               ))}
+            </div>
+          )}
+          {page.sections && (
+            <div className="mt-10">
+              <LegalSections sections={page.sections} />
             </div>
           )}
           {page.showFaqs && (
